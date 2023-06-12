@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "Game.h"
+using namespace std;
 
 int main() {
     // Initialize Board, Players and Game
@@ -10,44 +11,65 @@ int main() {
     cin >> name;
     cout << "Choose your token between 'X' or 'O'" << endl;
     cin >> token;
-    Player p1(name, token, 0);
+    Player p1(name, token);
     char tokenAI = token == 'X' ? 'O' : 'X';
-    Player AI("AI", tokenAI, 1);
+    AI AIplayer(tokenAI);
     Board* board = new Board(7, 6);
-    Game game(p1, AI, board);
+    Game game(p1, AIplayer, board);
     char winner;
     int position;
+    int positionAI;
     int tour = 1;
+
+    // Loop until there is a winner
     do {
         printf("Tour Number : %d", tour);
         cout << endl;
+
+        // Draw the current state of the board before any move in this tour
         game.printBoard();
         cout << endl;
-        cout << "Choose your column (1-6):" << endl;
+        cout << "Choose your column (1-7):" << endl;
         cin >> position;
         cout << endl;
         printf("Position chosen: %d\n", position);
         position--;
-        while (position < 0 || position > 5 || game.board->isValidMove(position) == -1) {
+
+        // Check if the position chosen by the player is valid
+        while (position < 0 || position > 6 || game.board->isValidMove(position) == -1) {
             cout << "You can't play with this position." << endl;
             cout << "Retry." << endl;
             cin >> position;
             printf("Position chosen: %d\n", position);
             position--;
         }
-        game.board->placeToken(position, game.getP1Token());
-        printf("Player: %s", game.getP1Name().c_str());
+        game.board->placeToken(game.getP1Token(), position);
+        printf("Player: %s\n", game.getP1Name().c_str());
+
+        // Draw player move
         cout << endl;
         game.printBoard();
         cout << endl;
 
-        // AI turn with the MiniMax algorithm :
-        //////////
-        // TODO //
-        //////////
+        // Check if the player has win the game 
+        winner = game.board->checkWin();
+        if(winner != '0') {
+            break;
+        }
 
+        // AI part turn
+        printf("AI turn:\n");
+        positionAI = game.getAIMove();
+        printf("Position chosen: %d\n", positionAI);
+        game.board->placeToken(tokenAI, positionAI);
+
+        // Draw AI move
         cout << endl;
+        game.printBoard();
+        cout << endl;
+
         tour++;
+        // Check if the AI has win the game
         winner = game.board->checkWin();
     } while (winner == '0');
     if(p1.getToken() == winner) {

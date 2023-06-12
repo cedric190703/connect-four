@@ -7,7 +7,7 @@ void Game::printBoard() {
 
     for(int j = 0; j < cols; ++j) {
         // Separate each columns
-        for(int x = 0; x < cols; x++) {
+        for(int x = 0; x < rows; x++) {
             cout << "+---";
         }
         cout << "+" << endl;
@@ -23,10 +23,10 @@ void Game::printBoard() {
             }
             cout << " ";
         }
-        cout << endl;
+        cout << "|" << endl;
     }
     
-    for(int x = 0; x < cols; x++) {
+    for(int x = 0; x < rows; x++) {
             cout << "+---";
         }
     cout << "+" << endl;
