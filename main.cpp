@@ -1,24 +1,52 @@
 #include <iostream>
 #include <stdio.h>
-#include "Game.h"
+#include "Game/Board.h"
+#include "Game/Game.h"
+#include "Game/Player.h"
+#include "AI/AI.h"
 using namespace std;
 
 int main() {
     // Initialize Board, Players and Game
     string name;
     char token;
+
+    cout  << endl;
     cout << "What's your name?" << endl;
     cin >> name;
-    cout << "Choose your token between 'X' or 'O'" << endl;
+
+    cout << "Choose your token between << '\033[32mX\033[0m' or '\033[31mO\033[0m'" << endl;
     cin >> token;
+
+    // Check if the user token is correct
+    while(token != 'X' && token != 'O') {
+        cout << endl;
+        cout << "Choose a correct token: '\033[32mX\033[0m' or '\033[31mO\033[0m'" << endl;
+        cin >> token;
+    }
+
+    cout << endl;
     Player p1(name, token);
     char tokenAI = token == 'X' ? 'O' : 'X';
     int difficulty;
-    cout << "Select a difficulty: (1-5):" << endl;
+    cout << endl;
+
+    // Select difficulty
+    cout << "Select a difficulty: (\033[31m1\033[0m - \033[32m5\033[0m):" << endl;
     cin >> difficulty;
+
+    // Check if the user difficlty is correct
+    while(difficulty < 0 || difficulty > 5) {
+        cout << endl;
+        cout << "Choose a correct difficulty: (\033[31m1\033[0m - \033[32m5\033[0m)" << endl;
+        cin >> token;
+    }
+    cout << endl;
+    
     AI AIplayer(tokenAI);
     Board* board = new Board(7, 6);
     Game game(p1, AIplayer, board, difficulty);
+
     char winner;
     int position;
     int positionAI;

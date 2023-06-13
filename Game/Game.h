@@ -1,7 +1,8 @@
 # pragma once
 #include "Player.h"
 #include "Board.h"
-#include "AI.h"
+#include "../AI/AI.h"
+
 using namespace std;
 
 class Game {

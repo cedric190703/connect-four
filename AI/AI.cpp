@@ -43,7 +43,7 @@ int AI::findBestMove(Board* board, int depth) {
     bool maximizingPlayer = true;
     int bestMove = -1;
 
-    int bestScore = alphaBeta(board, this->token, opponentToken, depth - 1, alpha, beta, maximizingPlayer, bestMove);
+    alphaBeta(board, this->token, opponentToken, depth - 1, alpha, beta, maximizingPlayer, bestMove);
 
-    return bestMove;
+    return bestMove != -1 ? bestMove : 0;
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "Board.h"
+#include "../Game/Board.h"
 #include <limits.h>
 #include <vector>
 

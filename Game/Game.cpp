@@ -2,6 +2,8 @@
 #include "Game.h"
 
 void Game::printBoard() {
+    // The text will be printed in green for the player
+    // ANd in red for the AI
     int rows = this->board->getRow();
     int cols = this->board->getCol();
 
@@ -18,8 +20,11 @@ void Game::printBoard() {
             if(token == '0') {
                 cout << " ";
             } else {
-                //printf("I: %d and J: %d\n", i, j);
-                cout << token;
+                if(token == this->getAIToken()) {
+                    cout << "\033[31m" << token << "\033[0m"; // Red
+                } else {
+                    cout << "\033[32m" << token << "\033[0m"; // Green
+                }
             }
             cout << " ";
         }
