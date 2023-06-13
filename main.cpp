@@ -13,9 +13,12 @@ int main() {
     cin >> token;
     Player p1(name, token);
     char tokenAI = token == 'X' ? 'O' : 'X';
+    int difficulty;
+    cout << "Select a difficulty: (1-5):" << endl;
+    cin >> difficulty;
     AI AIplayer(tokenAI);
     Board* board = new Board(7, 6);
-    Game game(p1, AIplayer, board);
+    Game game(p1, AIplayer, board, difficulty);
     char winner;
     int position;
     int positionAI;
