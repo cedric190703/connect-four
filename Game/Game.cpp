@@ -2,6 +2,13 @@
 #include "Game.h"
 
 void Game::printBoard() {
+    // Numbers indexes in the top
+    cout << endl;
+    for(int x = 1; x <= 7; x++) {
+        printf("  %d ", x);
+    }
+    cout << endl;
+
     // The text will be printed in green for the player
     // ANd in red for the AI
     int rows = this->board->getRow();
@@ -35,4 +42,11 @@ void Game::printBoard() {
             cout << "+---";
         }
     cout << "+" << endl;
+
+    // Numbers indexes in the bottom
+    cout << endl;
+    for(int x = 1; x <= 7; x++) {
+        printf("  %d ", x);
+    }
+    cout << endl;
 }

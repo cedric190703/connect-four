@@ -100,6 +100,12 @@ vector<int> Board::getMoves() {
 }
 
 void printBoard(char** board, int rows, int cols) {
+    cout << endl;
+    for(int x = 0; x < 7; x++) {
+        printf(" %d ", x);
+    }
+    cout << endl;
+
     for(int j = 0; j < cols; ++j) {
         // Separate each columns
         for(int x = 0; x < rows; x++) {

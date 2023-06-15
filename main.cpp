@@ -15,7 +15,8 @@ int main() {
     cout << "What's your name?" << endl;
     cin >> name;
 
-    cout << "Choose your token between << '\033[32mX\033[0m' or '\033[31mO\033[0m'" << endl;
+    cout << endl;
+    cout << "Choose your token between: '\033[32mX\033[0m' or '\033[31mO\033[0m'" << endl;
     cin >> token;
 
     // Check if the user token is correct
@@ -36,7 +37,7 @@ int main() {
     cin >> difficulty;
 
     // Check if the user difficlty is correct
-    while(difficulty < 0 || difficulty > 5) {
+    while(difficulty <= 0 || difficulty > 5) {
         cout << endl;
         cout << "Choose a correct difficulty: (\033[31m1\033[0m - \033[32m5\033[0m)" << endl;
         cin >> token;
